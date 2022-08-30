@@ -9,4 +9,7 @@ def home(request):
     return render(request,'home.html',{'products':products})
 
 def store(request):
-    return render(request,"store.html")
+    products=Product.objects.all().filter(is_available=True)
+    product_count=products.count()
+    return render(request,"store.html",{'products':products,
+                                        'count':product_count})
