@@ -133,8 +133,14 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'/static/images')
 MEDIA_URL="/images/"
 
 
+import os
 from django.contrib.messages import constants as messages
+
+
 MESSAGE_TAGS = {
-    messages.SUCCESS: '',
-    50: 'critical',
-}
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }
