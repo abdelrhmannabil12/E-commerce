@@ -2,6 +2,7 @@ from itertools import product
 from statistics import mode
 from django.db import models
 from store.models import *
+from accounts.models import *
 # Create your models here.
 class Cart(models.Model):
     cart_id=models.CharField(max_length=200)
@@ -13,6 +14,7 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
+    user = models.ForeignKey(Account,on_delete=models.CASCADE,null=True)
     cart=models.ForeignKey(Cart,on_delete=models.CASCADE)
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     quantity=models.IntegerField()
