@@ -145,7 +145,7 @@
     return cookieValue;
 }
 
-	var amount = "{{ grand_total }}"
+	var total = "{{ grand_total }}"
 	var url = "{% url 'payments' %}"
 	var csrftoken = getCookie('csrftoken');
 	var orderID = "{{order.order_number}}"
@@ -156,7 +156,7 @@
 
 		style: {
 			color: 'blue',
-			shape: 'rect',
+			shape: 'pill',
 			label: 'pay',
 			height: 40
 		},
@@ -166,7 +166,7 @@
 			return actions.order.create({
 				purchase_units: [{
 					amount: {
-						value: amount,
+						value: total,
 					}
 				}]
 			});
@@ -199,8 +199,6 @@
 				}
 			});
 		}
-
-
 	}).render('#paypal-button-container');
 </script>
 
