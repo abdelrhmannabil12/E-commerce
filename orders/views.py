@@ -59,7 +59,7 @@ def payments(request):
 
     # Send order recieved email to customer
     mail_subject = 'Thank you for your order!'
-    message = render_to_string('orders/order_recieved_email.html', {
+    message = render_to_string('order_recieved_email.html', {
         'user': request.user,
         'order': order,
     })
