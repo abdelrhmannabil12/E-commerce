@@ -71,6 +71,49 @@
 <div class="row">
 			<div class="col-md-9">
 
+
+	<form action="{% url 'submit_review' single_product.id %}" method="post">
+		{%  csrf_token %}
+		<h5>Write Your Review</h5>
+		<div>
+			<label for="">How Do You Rate This Product</label>
+			<br>
+			<div class="rate">
+
+				<input type="radio" name="rating" id="rating5" value="5" required> <label for="rating5" title="5"></label>
+				<input type="radio" name="rating" id="rating4" value="4" required> <label for="rating4" title="4"></label>
+				<input type="radio" name="rating" id="rating3" value="3" required> <label for="rating3" title="3"></label>
+				<input type="radio" name="rating" id="rating2" value="2" required> <label for="rating2" title="2"></label>
+				<input type="radio" name="rating" id="rating1" value="1" required> <label for="rating1" title="1"></label>
+				
+			</div>
+			<br>
+			Review Title:
+			<input type="text" class="form-control" name="subject" >
+			<br>
+			Review:
+			<br>
+			<textarea name="review"  rows="4" ></textarea>
+			<br>
+			{% if user.is_authenticated %}
+			<input type="submit" value="Submit Review" class="btn btn-primary">
+			{% else %}
+				<h3>You must be logged in to post a review <span><a href="{% url 'login'%}">Log In</a></span></h3>
+			{% endif %}
+		</div>
+		{% for message in messages %}
+		<div class="container-fluid p-0">
+		  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="True">&times;</span>
+			</button>
+			{{ message }}
+		  </div>
+		</div>
+		{% endfor %}
+	
+	</form>
+	<br>
 	<header class="section-heading">
 		<h3>Customer Reviews </h3>  
 		

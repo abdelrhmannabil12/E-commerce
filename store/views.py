@@ -14,7 +14,7 @@ from orders.models import OrderProduct
 def home(request):
     products=Product.objects.all().filter(is_available=True)
 
-    return render(request,'home.html',{'products':products})
+    return render(request,'home.html',{'products':products}) 
 def store(request, category_slug=None):
     categories = None
     products = None
