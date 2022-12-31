@@ -20,29 +20,35 @@
 	<main class="col-md-9">
 		<article class="card"style="text-align: center;">
 		<header class="card-header">
-			<strong class="d-inline-block mr-3">Logged In as</strong>
-			<span>{{user.username}}</span>
+			<strong class="d-inline-block mr-3">Your Orders History</strong>
+
 		</header>
 		<div class="card-body">
-			<div class="row">
-				<div class="col-md-6">
-                    <div class="card" style="text-align: center;">
-                        <div class="card-body">
-                        <h5 class="card-title">
-                            Total Orders
-                        </h5>
-                        <h4>{{orders_count}}</h4>
-                        <a href="">View Orders</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <h4>{{user.email}}</h4>
-                        <h4>{{user.phone_number}}</h4>
-                        
-                    </div>
-                </div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Product Number</th>
+            <th scope="col">Billing Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Order Total</th>
+            <th scope="col">Order Date</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr>
+            <th scope="row">{{order.order_number}}</th>
+            <td>{{order.full_name}}</td>
+            <td>{{order.phone}}</td>
+            <td>{{order.order_total}}</td>
+            <td>{{order.created_at}}</td>
+          </tr>
+          
+      {% endfor %}
+        </tbody>
+      </table>
+    </div>
 			</div> <!-- row.// -->
 		</div> <!-- card-body .// -->
 		</article> <!-- order-group.// -->
