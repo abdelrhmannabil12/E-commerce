@@ -32,13 +32,14 @@
                             Total Orders
                         </h5>
                         <h4>{{orders_count}}</h4>
-                        <a href="">View Orders</a>
+                        <a href="{% url 'my_orders'%}">View Orders</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">
-                        <h4>{{user.email}}</h4>
+                      <img src="{{userprofile.profile_picture.url}}" alt="profile_picture" width="20%"style="border-radius: 50%;" >
+                      <h4>{{user.email}}</h4>
                         <h4>{{user.phone_number}}</h4>
                         
                     </div>
