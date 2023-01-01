@@ -167,5 +167,14 @@ $(document).ready(function() {
             </section>
         </div><!-- //container -->
     </footer>
+	<script src="jquery-3.6.1.min.js"></script>
+	<script>
+		$(document).ready(function(e){
+			$('.thumb a').click(function(e){
+			e.preventDefault();
+			$('.mainImage img').attr('src',$(this).attr('href'));
+		})
+	})
+	</script>
 </body>
 </html>
