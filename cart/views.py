@@ -3,6 +3,7 @@ from store.models import Product, Variation
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from accounts.models import *
 
 # Create your views here.
 from django.http import HttpResponse
@@ -205,12 +206,13 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         grand_total = total + tax
     except ObjectDoesNotExist:
         pass #just ignore
-
+    userprofile=UserProfile.objects.get(user=request.user)
     context = {
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
         'tax'       : tax,
         'grand_total': grand_total,
+        'userprofile':userprofile,
     }
     return render(request, 'checkout.html', context)
