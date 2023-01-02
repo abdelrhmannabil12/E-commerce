@@ -14,8 +14,10 @@ class AcountAdmin(UserAdmin):
     filter_horizontal=()
 class UserProfileAdmin(admin.ModelAdmin):
     def thumbnail(self,object):
-        return format_html('<img src="{}" width="30" style="border-radius:50%;" >'.format(object.profile_picture.url))
-
+        if object.profile_picture:
+            return format_html('<img src="{}" width="30" style="border-radius:50%;" >'.format(object.profile_picture.url))
+        else:
+            return format_html('<img src="https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873__340.png" width="30" style="border-radius:50%;" >')
     thumbnail.short_description="Profile Picture"
     list_display=('thumbnail','user','city','state','country')
 

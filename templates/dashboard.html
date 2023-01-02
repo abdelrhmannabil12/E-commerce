@@ -38,7 +38,11 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">
+                      {% if userprofile.profile_picture %}
                       <img src="{{userprofile.profile_picture.url}}" alt="profile_picture" width="20%"style="border-radius: 50%;" >
+                      {% else %}
+                      <img src="https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873__340.png" alt="profile_picture" width="20%"style="border-radius: 50%;" >
+                      {% endif %}
                       <h4>{{user.email}}</h4>
                         <h4>{{user.phone_number}}</h4>
                         
