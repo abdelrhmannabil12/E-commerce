@@ -15,37 +15,6 @@ from cart.views  import _cart_id
 import requests
 from orders.models import *
 # Create your views here.
-def register(request):
-    if request.method == 'POST':
-        form=RegisterationForm(request.POST)
-        if form.is_valid():
-            first_name=form.cleaned_data['first_name']
-            last_name=form.cleaned_data['last_name']
-            email=form.cleaned_data['email']
-            password=form.cleaned_data['password']
-            username=email.split('@')[0]
-            user=Account.objects.create_user(first_name=first_name,last_name=last_name,email=email,username=username,password=password)
-            user.save()
-
-
-            current_site=get_current_site(request)
-            mail_subject="Please Active Your account"
-            message=render_to_string('verification_email.html',{
-                'user':user,
-                'domain':current_site,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':default_token_generator.make_token(user),
-            })
-            to_email=email 
-            send_email=EmailMessage(mail_subject,message,to=[to_email])
-            send_email.send()
-            messages.success(request,'Registeration Successful')
-            return redirect('register')
-    else:
-        form=RegisterationForm()
-    return render(request,'register.html',{"form":form})
-
-
 
 def login(request):
     if request.method == 'POST':
@@ -104,6 +73,39 @@ def login(request):
             return redirect('login')
     return render(request,'login.html')
 
+def register(request):
+    if request.method == 'POST':
+        form=RegisterationForm(request.POST)
+        if form.is_valid():
+            first_name=form.cleaned_data['first_name']
+            last_name=form.cleaned_data['last_name']
+            email=form.cleaned_data['email']
+            password=form.cleaned_data['password']
+            username=email.split('@')[0]
+            user=Account.objects.create_user(first_name=first_name,last_name=last_name,email=email,username=username,password=password)
+            user.save()
+
+
+            current_site=get_current_site(request)
+            mail_subject="Please Active Your account"
+            message=render_to_string('verification_email.html',{
+                'user':user,
+                'domain':current_site,
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':default_token_generator.make_token(user),
+            })
+            to_email=email 
+            send_email=EmailMessage(mail_subject,message,to=[to_email])
+            send_email.send()
+            messages.success(request,'Registeration Successful , Please Verify Your Account')
+            return redirect('login')
+    else:
+        form=RegisterationForm()
+    return render(request,'register.html',{"form":form})
+
+
+
+
 
 @login_required(login_url = 'login')
 def logout(request):
@@ -121,6 +123,8 @@ def activate(request,uidb64,token):
     if user is not None and default_token_generator.check_token(user,token):
         user.is_active=True
         user.save()
+        userprofile=UserProfile(user=user)
+        userprofile.save()
         messages.success(request,"Congratulations! your account is activated")
         return redirect('login')
     else:
