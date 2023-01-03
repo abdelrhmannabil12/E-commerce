@@ -20,15 +20,15 @@
 	<main class="col-md-9">
 		<article class="card"style="text-align: center;">
 		<header class="card-header">
-			<strong class="d-inline-block mr-3">Edit Your Profile</strong>
+			<strong  class="d-inline-block mr-3">Edit Your Profile</strong>
 
 		</header>
 		<div class="card-body">
             <div class="text-right">
                 {% if userprofile.profile_picture %}
-                <img src="{{userprofile.profile_picture.url}}" alt="profile_picture" width="20%"style="border-radius: 50%;" >
+                <center><img src="{{userprofile.profile_picture.url}}" alt="profile_picture" width="20%"style="border-radius: 50%;" ></center>
                 {% else %}
-                <img src="https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873__340.png" alt="profile_picture" width="20%"style="border-radius: 50%;" >
+                <center>     <img src="https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873__340.png" alt="profile_picture" width="20%"style="border-radius: 50%;" ></center>
                 {% endif %}
              </div>
         <div class="row">
@@ -78,7 +78,7 @@
                                 <label for="">Country</label>
                                 {{profile_form.country}}
                             </div>
-                            <input type="submit" value="Save" class="btn btn-primary">
+                            <input type="submit" value="Save" class="btn btn-success">
                         </div>
                 </form>
             </div>

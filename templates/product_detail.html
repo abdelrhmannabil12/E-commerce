@@ -7,7 +7,7 @@
 	<div class="container">
 
 		<!-- ============================ COMPONENT 1 ================================= -->
-		<div class="card">
+		<div class="card" >
 			<div class="row no-gutters">
 				<aside class="col-md-6">
 					<article class="gallery-wrap">
@@ -79,7 +79,7 @@
 							{% if single_product.stock <= 0 %}
 							<h5 class="text-danger">Out of Stock</h5>
 							{% else %}
-							<button type="submit" class="btn  btn-primary"> <span class="text">Add to Cart</span> <i class="fas fa-shopping-cart"></i> </button>
+							<button type="submit" class="btn btn-outline-success"> <span class="text">Add to Cart</span> <i class="fas fa-shopping-cart"></i> </button>
 							{% endif %}
 						</article> <!-- product-info-aside .// -->
 					</form>
@@ -101,7 +101,7 @@
 
 					<div>
 						<!-- Rating stars -->
-						<label>How do you rate this product?</label>
+						<label style="color: white;">How do you rate this product?</label>
 						<br>
 						<div class="rate">
 							<input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
@@ -124,12 +124,12 @@
 						<br>
 						{% if user.is_authenticated %}
 							{% if orderproduct %}
-								<input type="submit" value="Submit Review" class="btn btn-primary">
+								<input type="submit" value="Submit Review" class="btn btn-success">
 							{% else %}
-								<p>You must purchase this product to post a review.</p>
+								<p style="color: white;">You must purchase this product to post a review.</p>
 							{% endif %}
 						{% else %}
-						<p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span></p>
+						<p style="color: white;">You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span></p>
 						{% endif %}
 
 					</div>
